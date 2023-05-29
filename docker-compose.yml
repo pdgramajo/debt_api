@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongo_db:
+    image: mongo:6.0.5
+    container_name: mongo_database
+    restart: always
+    environment:
+      MONGODB_DATABASE: DebtDB
+    volumes:
+      - db-data:/data/db
+      - db-config:/data/configdb
+    ports:
+      - 27017:27017
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    container_name: mongo-express-admin
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://mongo_db:27017/
+    ports:
+      - 8081:8081
+volumes:
+  db-data:
+    name: db-data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./db
+  db-config:
+    name: db-config
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./configdb
+networks:
+  default:
+    name: mongodb_network      
