@@ -16,9 +16,11 @@ services:
     image: mongo-express:1.0.0-alpha
     container_name: mongo-express-admin
     restart: always
+    depends_on:
+      - mongo_db
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       ME_CONFIG_MONGODB_URL: mongodb://mongo_db:27017/
     ports:
       - 8081:8081
@@ -38,5 +40,5 @@ volumes:
       o: bind
       device: ./configdb
 networks:
-  default:
-    name: mongodb_network      
+  mongodb_network:
+    driver: bridge

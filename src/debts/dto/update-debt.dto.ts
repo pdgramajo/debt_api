@@ -7,5 +7,5 @@ export class UpdateDebtDto {
   @IsEmpty({
     message: 'You can`t edit the paid field.',
   })
-  paid: Boolean;
+  paid: boolean;
 }

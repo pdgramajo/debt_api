@@ -8,7 +8,7 @@ import { Model } from 'mongoose';
 export class DebtsService {
   constructor(
     @InjectModel(Debt.name) private debtModule: Model<DebtDocument>,
-  ) { }
+  ) {}
 
   async create(createDebtDto: CreateDebtDto) {
     const debtCreated = await this.debtModule.create(createDebtDto);
@@ -132,7 +132,11 @@ export class DebtsService {
   }
 
   async update(id: string, updateDebtDto: UpdateDebtDto) {
-    const debtUpdated = await this.debtModule.findOneAndUpdate({ _id: id }, updateDebtDto, { new: true });
+    const debtUpdated = await this.debtModule.findOneAndUpdate(
+      { _id: id },
+      updateDebtDto,
+      { new: true },
+    );
     return debtUpdated;
   }
 
@@ -141,7 +145,11 @@ export class DebtsService {
   }
 
   async remove(id: string) {
-    const debtUpdated = await this.debtModule.findOneAndUpdate({ _id: id }, { paid: true }, { new: true });
+    const debtUpdated = await this.debtModule.findOneAndUpdate(
+      { _id: id },
+      { paid: true },
+      { new: true },
+    );
     return debtUpdated;
   }
 }
