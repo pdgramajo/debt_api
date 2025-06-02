@@ -19,55 +19,80 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descripción
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Requisitos previos
+
+- [Node.js](https://nodejs.org/) 18.x o superior
+- [npm](https://www.npmjs.com/)
+- [Docker](https://www.docker.com/) y [Docker Compose](https://docs.docker.com/compose/) para la base de datos
+
+## Instalación
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## Configuración de variables de entorno
+
+Copia el archivo `.env.example` a `.env` y edítalo según tu entorno:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cp .env.example .env
 ```
 
-## Test
+## Levantar la base de datos con Docker Compose
+
+Para iniciar la base de datos localmente, ejecuta:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose up -d
 ```
 
-## Support
+Esto levantará los servicios definidos en el archivo `docker-compose.yml` (por ejemplo, PostgreSQL o MySQL).  
+Asegúrate de que los valores de conexión en tu `.env` coincidan con los del `docker-compose.yml`.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Ejecución de la aplicación
 
-## Stay in touch
+```bash
+# desarrollo
+npm run start
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+# modo watch
+npm run start:dev
+
+# producción
+npm run start:prod
+```
+
+La API estará disponible en [http://localhost:3000](http://localhost:3000) por defecto.
+
+## Pruebas
+
+```bash
+# pruebas unitarias
+npm run test
+
+# pruebas e2e
+npm run test:e2e
+
+# cobertura de pruebas
+npm run test:cov
+```
+
+## Soporte
+
+Nest es un proyecto open source con licencia MIT. Si quieres apoyar, revisa [este enlace](https://docs.nestjs.com/support).
+
+## Contacto
+
+- Autor - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## Licencia
 
-Nest is [MIT licensed](LICENSE).
+Nest está bajo licencia [MIT](LICENSE).
